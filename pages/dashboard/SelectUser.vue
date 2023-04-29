@@ -36,37 +36,42 @@
               Nothing found.
             </div>
 
-            <ComboboxOption
-                v-for="person in filteredPeople"
-                as="template"
-                :key="person.id"
-                :value="person"
-                v-slot="{ selected, active }"
-            >
-              <li
-                  class="flex relative cursor-default select-none py-2 pl-10 pr-4"
-                  :class="{
+            <div class="container mx-auto">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <ComboboxOption
+                    v-for="person in filteredPeople"
+                    class="flex justify-center text-6xl"
+                    as="template"
+                    :key="person.id"
+                    :value="person"
+                    v-slot="{ selected, active }"
+                >
+                  <li
+                      class="flex relative cursor-default select-none py-2 pl-10 pr-4"
+                      :class="{
                   'bg-teal-600 text-white': active,
                   'text-gray-900': !active,
                 }"
-              >
-                <img :src="person.avatar" alt="" class="h-5 w-5 mr-2 flex-shrink-0 rounded-full" />
-                <span
-                    class="truncate"
-                    :class="{ 'font-medium': selected, 'font-normal': !selected }"
-                >
+                  >
+                    <img :src="person.avatar" alt="" class="h-5 w-5 mr-2 flex-shrink-0 rounded-full" />
+                    <span
+                        class="truncate"
+                        :class="{ 'font-medium': selected, 'font-normal': !selected }"
+                    >
                   {{ person.name }}
                 </span>
-                <span
-                    v-if="selected"
-                    class="absolute inset-y-0 left-0 flex items-center pl-3"
-                    :class="{ 'text-white': active, 'text-teal-600': !active }"
-                >
+                    <span
+                        v-if="selected"
+                        class="absolute inset-y-0 left-0 flex items-center pl-3"
+                        :class="{ 'text-white': active, 'text-teal-600': !active }"
+                    >
                   <CheckIcon class="h-5 w-5" aria-hidden="true" />
                 </span>
 
-              </li>
-            </ComboboxOption>
+                  </li>
+                </ComboboxOption>
+              </div>
+            </div>
           </ComboboxOptions>
         </TransitionRoot>
       </div>
